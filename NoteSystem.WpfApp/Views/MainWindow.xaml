@@ -1,0 +1,118 @@
+﻿<Window x:Class="NoteSystem.WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NoteSystem.WpfApp.ViewModels"
+        xmlns:rules="clr-namespace:NoteSystem.WpfApp.ValidationRules"
+        xmlns:converters="clr-namespace:NoteSystem.WpfApp.Converters"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <local:MainWindowVM/>
+    </Window.DataContext>
+    <Window.Resources>
+        <converters:ControlsValidationToEnabledConverter x:Key="ValidationToButtonEnabled"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Grid}">
+                    <Setter Property="Background" Value="#FFF3F3F3"/>
+                    <Setter Property="Width" Value="200"/>
+                    <Setter Property="Margin" Value="5 5 5 0"/>
+                </Style>
+                <Style TargetType="{x:Type Label}">
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </Style>
+            </StackPanel.Resources>
+            <Grid x:Name="NotebooksGrid">
+                <StackPanel Orientation="Vertical">
+                    <Label HorizontalAlignment="Center" Content="Notebooks"/>
+                    <ListBox x:Name="NotebookList"
+                             ItemsSource="{Binding Notebooks, UpdateSourceTrigger=PropertyChanged}"
+                             SelectedItem="{Binding SelectedNotebook}"
+                             DisplayMemberPath="Name"
+                             MaxHeight="220"/>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                        <Button Content="Add" Width="100" Click="Button_Click"/>
+                        <Button Content="Remove" Width="100" Click="Button_Click_1"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <Grid x:Name="NotesGrid">
+                <StackPanel Orientation="Vertical">
+                    <Label HorizontalAlignment="Center" Content="Notes"/>
+                    <ListBox x:Name="NoteList"
+                             ItemsSource="{Binding SelectedNotebook.Notes, UpdateSourceTrigger=PropertyChanged}"
+                             SelectedItem="{Binding SelectedNote}"
+                             DisplayMemberPath="Name"
+                             MaxHeight="220"/>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                        <Button Content="Add" Width="100" Click="Button_Click_2"/>
+                        <Button Content="Remove" Width="100" Click="Button_Click_4"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <Grid x:Name="NoteEditorGrid">
+                <StackPanel Orientation="Vertical">
+                    <Label HorizontalAlignment="Center" Content="Note Editor"/>
+
+                    <Label Content="Note Name*" FontWeight="Normal"/>
+                    <TextBox x:Name="NoteName"
+                             ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}">
+                        <TextBox.Text>
+                            <Binding Path="SelectedNote.Name" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <rules:NameValidationRule ValidatesOnTargetUpdated="True"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+
+                    <Label Content="Note Text*" FontWeight="Normal"/>
+                    <TextBox x:Name="NoteText" AcceptsReturn="True" Height="180"
+                             ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}">
+                        <TextBox.Text>
+                            <Binding Path="SelectedNote.Text" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <rules:TextValidationRule ValidatesOnTargetUpdated="True"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <Button Content="Save Changes"
+                            Width="95"
+                            Height="30"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Right" Margin="0,0,105,0" Click="Button_Click_3">
+                        <Button.IsEnabled>
+                            <MultiBinding Converter="{StaticResource ResourceKey=ValidationToButtonEnabled}">
+                                <Binding ElementName="NoteText" Path="(Validation.HasError)"/>
+                                <Binding ElementName="NoteName" Path="(Validation.HasError)"/>
+                            </MultiBinding>
+                        </Button.IsEnabled>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <Grid Width="150">
+                <StackPanel Orientation="Vertical" Margin="10,0,-10,10">
+                    <Label Content="Data Source" HorizontalAlignment="Center"/>
+                    <ComboBox x:Name="DataSourceType"
+                              ItemsSource="{Binding AllSources}"
+                              SelectedItem="{Binding SelectedSource}"/>
+                </StackPanel>
+            </Grid>
+
+        </StackPanel>
+    </Grid>
+</Window>
