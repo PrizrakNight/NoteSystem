@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteSystem.ConsoleApp", "NoteSystem.Console\NoteSystem.ConsoleApp.csproj", "{809010B3-B6CF-427F-A120-9E7C671DF417}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoteSystem.ConsoleApp", "NoteSystem.Console\NoteSystem.ConsoleApp.csproj", "{809010B3-B6CF-427F-A120-9E7C671DF417}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserInterface", "UserInterface", "{5B24A38F-A86C-41FF-91D1-2E6A8C71CCA9}"
 EndProject
@@ -11,9 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteSystem.WinFormsApp", "N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteSystem.WpfApp", "NoteSystem.WpfApp\NoteSystem.WpfApp.csproj", "{4C6B9C1B-94DC-4FF4-96BA-0742AF22A254}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteSystem.DAL", "NoteSystem.DAL\NoteSystem.DAL.csproj", "{61968761-1DCF-4A3A-80DB-D6A3B968BD70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoteSystem.DAL", "NoteSystem.DAL\NoteSystem.DAL.csproj", "{61968761-1DCF-4A3A-80DB-D6A3B968BD70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteSystem.BLL", "NoteSystem.BLL\NoteSystem.BLL.csproj", "{01BD47AA-D3D7-498D-A73F-AA6115A6B58A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoteSystem.BLL", "NoteSystem.BLL\NoteSystem.BLL.csproj", "{01BD47AA-D3D7-498D-A73F-AA6115A6B58A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{D6C1CC0F-40D7-4CFE-A8E2-31F498E21FB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,8 @@ Global
 		{809010B3-B6CF-427F-A120-9E7C671DF417} = {5B24A38F-A86C-41FF-91D1-2E6A8C71CCA9}
 		{0AE4B9A5-57D1-42EA-BED5-59F910626220} = {5B24A38F-A86C-41FF-91D1-2E6A8C71CCA9}
 		{4C6B9C1B-94DC-4FF4-96BA-0742AF22A254} = {5B24A38F-A86C-41FF-91D1-2E6A8C71CCA9}
+		{61968761-1DCF-4A3A-80DB-D6A3B968BD70} = {D6C1CC0F-40D7-4CFE-A8E2-31F498E21FB8}
+		{01BD47AA-D3D7-498D-A73F-AA6115A6B58A} = {D6C1CC0F-40D7-4CFE-A8E2-31F498E21FB8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {547E23CC-01E8-4D3C-8656-698C51AA48B5}
