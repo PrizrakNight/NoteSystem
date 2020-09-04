@@ -1,9 +1,12 @@
-﻿using System;
+﻿using NoteSystem.BLL.Interfaces;
+using System;
 
 namespace NoteSystem.BLL.Dto
 {
-    public class NoteDto
+    public class NoteDto : ICreatable
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
         public string Text { get; set; }
 

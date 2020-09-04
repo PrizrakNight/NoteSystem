@@ -106,11 +106,15 @@ namespace NoteSystem.BLL
         {
             var dataSource = GetDataSource(dataSourceType);
             var notebookModels = _mapper.Map<Notebook[]>(notebooks);
+            var notebooksDto = notebooks.ToArray();
 
             for (int i = 0; i < notebookModels.Length; i++)
                 dataSource.NotebookRepository.Add(notebookModels[i]);
 
             dataSource.NotebookRepository.SaveChanges();
+
+            for (int i = 0; i < notebooksDto.Length; i++)
+                notebooksDto[i].Id = notebookModels[i].Id;
         }
 
         private static DataSource GetDataSource(DataSourceType dataSourceType)
