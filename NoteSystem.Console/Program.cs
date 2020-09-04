@@ -1,5 +1,6 @@
 ﻿using NoteSystem.BLL;
 using NoteSystem.BLL.Dto;
+using NoteSystem.ConsoleApp.Extended;
 using System;
 
 namespace NoteSystem.ConsoleApp
@@ -121,7 +122,7 @@ namespace NoteSystem.ConsoleApp
 
         private static void PrintAvailableCommands()
         {
-            var commandInfos = ExtendedConsole.GetConsoleCommands();
+            var commandInfos = ExtendedConsole.GetAvailableCommands();
 
             for (int i = 0; i < commandInfos.Length; i++)
                 Console.WriteLine(commandInfos[i]);
